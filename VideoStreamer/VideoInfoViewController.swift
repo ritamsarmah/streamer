@@ -132,7 +132,7 @@ class VideoInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func donePressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     func setDownloadProgress() {
@@ -176,9 +176,7 @@ class VideoInfoViewController: UIViewController, UIScrollViewDelegate {
                     DispatchQueue.main.async {
                         self?.downloadState = .downloaded
                         self?.setDownloadButton()
-                        if let vc = UIApplication.shared.keyWindow?.rootViewController {
-                            Alert.presentDownloadSuccess(on: vc, for: video)
-                        }
+                       Alert.presentDownloadSuccess(for: video)
                     }
                 } catch let error {
                     self?.downloadState = .notDownloaded
@@ -275,7 +273,7 @@ class VideoInfoViewController: UIViewController, UIScrollViewDelegate {
             top = relativeYOffset
         } else {
             if relativeYOffset < top! - 60 {
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true)
             }
         }
     }

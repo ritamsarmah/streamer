@@ -32,7 +32,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Navigation
 
     @IBAction func done(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     @IBAction func resumePlaybackChanged(_ sender: UISwitch) {

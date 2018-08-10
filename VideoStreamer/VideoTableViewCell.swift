@@ -151,9 +151,7 @@ class VideoTableViewCell: UITableViewCell {
                         self?.videoDownloadProgressView.isHidden = true
                         self?.durationLabel.isHidden = false
                         self?.downloadState = .downloaded
-                        if let vc = UIApplication.shared.keyWindow?.rootViewController {
-                            Alert.presentDownloadSuccess(on: vc, for: video)
-                        }
+                        Alert.presentDownloadSuccess(for: video)
                     }
                 } catch let error {
                     self?.downloadState = .notDownloaded
@@ -205,10 +203,7 @@ class VideoTableViewCell: UITableViewCell {
             }
         } else {
             downloadState = .downloaded
-            let downloadAlert = UIAlertController(title: "Video already downloaded!", message: nil, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            downloadAlert.addAction(action)
-            UIApplication.shared.keyWindow?.rootViewController?.present(downloadAlert, animated: true, completion: nil)
+            Alert.presentDownloadExists()
         }
     }
     

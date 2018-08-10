@@ -93,7 +93,7 @@ class VideoTableViewController: UITableViewController, UITextFieldDelegate {
     func showAlert(for type: AlertType, message: String?) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true)
         }
         
         switch type {
@@ -108,7 +108,7 @@ class VideoTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
         alert.addAction(dismissAction)
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
     }
     
     // MARK: - Video Management

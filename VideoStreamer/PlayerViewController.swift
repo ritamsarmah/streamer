@@ -111,7 +111,7 @@ class PlayerViewController: AVPlayerViewController {
                 }))
             }
             submenu.addAction(cancelAction)
-            self.present(submenu, animated: true, completion: nil)
+            self.present(submenu, animated: true)
         }
         
         let restartAction = UIAlertAction(title: "Restart", style: .default) { _ in
@@ -127,7 +127,7 @@ class PlayerViewController: AVPlayerViewController {
         menu.addAction(musicModeAction)
         menu.addAction(cancelAction)
         
-        present(menu, animated: true, completion: nil)
+        present(menu, animated: true)
     }
     
 }

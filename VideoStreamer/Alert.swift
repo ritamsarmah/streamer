@@ -13,6 +13,9 @@ struct Alert {
     private init() {}
     
     private static let okAction = UIAlertAction(title: "OK", style: .default)
+    private static var rootViewController: UIViewController! {
+        return UIApplication.shared.keyWindow?.rootViewController
+    }
     
     private static func presentAlert(on viewController: UIViewController, title: String?, message: String?, actions: [UIAlertAction]) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -30,12 +33,12 @@ struct Alert {
     
     // MARK: Downloading
     
-    static func presentDownloadSuccess(on viewController: UIViewController, for video: Video) {
+    static func presentDownloadSuccess(for video: Video, on viewController: UIViewController = rootViewController) {
         let message = "\"\(video.title ?? video.filename)\" is now available offline"
         presentAlert(on: viewController, title: "Download successful!", message: message, actions: [okAction])
     }
     
-    static func presentDownloadExists(on viewController: UIViewController) {
+    static func presentDownloadExists(on viewController: UIViewController = rootViewController) {
         presentAlert(on: viewController, title: "Video already downloaded!", message: nil, actions: [okAction])
     }
 }
