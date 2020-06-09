@@ -17,9 +17,22 @@ class PlayerViewController: AVPlayerViewController {
     var statusToken: NSKeyValueObservation?
     var backgroundPlayer: AVPlayer?
     
+    override var shouldAutorotate: Bool {
+        return !SettingsManager.shared.lockLandscapePlayback
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if SettingsManager.shared.lockLandscapePlayback {
+            return .landscape
+        } else {
+            return .allButUpsideDown
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addPlaybackMenu()
+//        addPlaybackControlGestures()
         configurePlayer()
     }
     
@@ -114,6 +127,50 @@ class PlayerViewController: AVPlayerViewController {
         }
     }
     
+    // MARK: - Playback Gestures
+    
+    func addPlaybackControlGestures() {
+        let backwardView = UIView()
+        let forwardView = UIView()
+        let stackView = UIStackView()
+        
+        backwardView.backgroundColor = .green
+        forwardView.backgroundColor = .orange
+        
+        view.addSubview(stackView)
+        
+        // Configure backward double tap action
+        let backRecognizer = UITapGestureRecognizer()
+        backRecognizer.numberOfTouchesRequired = 2
+        backRecognizer.addTarget(self, action: #selector(skipBack))
+        backwardView.addGestureRecognizer(backRecognizer)
+        
+        // Configure forward double tap action
+        let forwardRecognizer = UITapGestureRecognizer()
+        forwardRecognizer.numberOfTouchesRequired = 2
+        forwardRecognizer.addTarget(self, action: #selector(skipForward))
+        forwardView.addGestureRecognizer(forwardRecognizer)
+
+        // Configure stackView
+        stackView.addArrangedSubview(backwardView)
+        stackView.addArrangedSubview(forwardView)
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        stackView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    @objc func skipBack() {
+        print("back")
+    }
+    
+    @objc func skipForward() {
+        print("forward")
+    }
+    
     // MARK: - Playback Settings
     
     func addPlaybackMenu() {
@@ -127,7 +184,7 @@ class PlayerViewController: AVPlayerViewController {
         
         let speedAction = UIAlertAction(title: "Playback Speed", style: .default) { _ in
             let submenu = UIAlertController(title: "Playback Speed", message: nil, preferredStyle: .actionSheet)
-            for speed in SettingsConstants.Speeds {
+            for speed in Settings.Speeds {
                 var actionTitle = "\(speed)"
                 if SettingsManager.shared.playbackSpeed == speed {
                     actionTitle += "*"

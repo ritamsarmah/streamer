@@ -367,12 +367,41 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ug1-EU-JnJ">
+                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ug1-EU-JnJ" id="y5n-FV-G1T">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Lock Landscape Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OK-MO-I5K">
+                                                    <rect key="frame" x="16" y="12" width="286" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-5X-qKX">
+                                                    <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="landscapeLockChanged:" destination="GSx-Q8-tiL" eventType="valueChanged" id="DIa-Rc-PDW"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9sc-5X-qKX" firstAttribute="trailing" secondItem="y5n-FV-G1T" secondAttribute="trailingMargin" id="D33-Gz-U8f"/>
+                                                <constraint firstItem="9sc-5X-qKX" firstAttribute="leading" secondItem="0OK-MO-I5K" secondAttribute="trailing" constant="8" symbolic="YES" id="Fit-qa-r1b"/>
+                                                <constraint firstItem="0OK-MO-I5K" firstAttribute="centerY" secondItem="y5n-FV-G1T" secondAttribute="centerY" id="Iou-kF-uk9"/>
+                                                <constraint firstItem="0OK-MO-I5K" firstAttribute="leading" secondItem="y5n-FV-G1T" secondAttribute="leadingMargin" id="Uia-8t-Xnf"/>
+                                                <constraint firstItem="9sc-5X-qKX" firstAttribute="centerY" secondItem="y5n-FV-G1T" secondAttribute="centerY" id="wMA-WM-JdB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="EKp-vF-VXK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KA8-nt-51s" style="IBUITableViewCellStyleDefault" id="by1-cc-oKF">
-                                        <rect key="frame" x="0.0" y="223.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="267.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="by1-cc-oKF" id="LAN-6M-kpr">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -389,7 +418,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Zan-Jt-mRq" style="IBUITableViewCellStyleDefault" id="TeV-EP-NL5">
-                                        <rect key="frame" x="0.0" y="267.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="311.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TeV-EP-NL5" id="FiX-tl-CzZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -425,6 +454,7 @@
                         <outlet property="clearCacheCell" destination="by1-cc-oKF" id="Oqo-tf-svK"/>
                         <outlet property="clearDownloadsCell" destination="TeV-EP-NL5" id="TIk-a1-sHS"/>
                         <outlet property="labelLeadingConstraint" destination="g2a-cu-nuI" id="4jn-lg-rCE"/>
+                        <outlet property="landscapeLockSwitch" destination="9sc-5X-qKX" id="PwH-x3-muw"/>
                         <outlet property="resumePlaybackSwitch" destination="2ue-W7-9Hl" id="K1n-kb-4re"/>
                         <outlet property="speedValueLabel" destination="sTj-gF-6ox" id="nGL-XF-hto"/>
                     </connections>

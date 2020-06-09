@@ -2,7 +2,7 @@
 //  SettingsManager.swift
 //  VideoStreamer
 //
-//  Created by SARMAH, RITAM on 8/9/18.
+//  Created by Ritam Sarmah on 8/9/18.
 //  Copyright © 2018 Ritam Sarmah. All rights reserved.
 //
 
@@ -18,36 +18,46 @@ class SettingsManager {
     
     var playbackSpeed: Float {
         get {
-            return defaults.float(forKey: SettingsConstants.Speed)
+            return defaults.float(forKey: Settings.Speed)
         }
         set {
-            if SettingsConstants.Speeds.index(of: playbackSpeed) != nil {
-                defaults.set(newValue, forKey: SettingsConstants.Speed)
+            if Settings.Speeds.index(of: playbackSpeed) != nil {
+                defaults.set(newValue, forKey: Settings.Speed)
             }
         }
     }
     
     var resumePlayback: Bool {
         get {
-            return defaults.bool(forKey: SettingsConstants.ResumePlayback)
+            return defaults.bool(forKey: Settings.ResumePlayback)
         }
         set {
-            defaults.set(newValue, forKey: SettingsConstants.ResumePlayback)
+            defaults.set(newValue, forKey: Settings.ResumePlayback)
         }
     }
     
     var backgroundPlay: Bool {
         get {
-            return defaults.bool(forKey: SettingsConstants.BackgroundPlay)
+            return defaults.bool(forKey: Settings.BackgroundPlay)
         }
         set {
-            defaults.set(newValue, forKey: SettingsConstants.BackgroundPlay)
+            defaults.set(newValue, forKey: Settings.BackgroundPlay)
+        }
+    }
+    
+    var lockLandscapePlayback: Bool {
+        get {
+            return defaults.bool(forKey: Settings.LockLandscapePlayback)
+        }
+        set {
+            defaults.set(newValue, forKey: Settings.LockLandscapePlayback)
         }
     }
     
     func registerDefaults() {
-        UserDefaults.standard.register(defaults: [SettingsConstants.Speed : 1.0])
-        UserDefaults.standard.register(defaults: [SettingsConstants.ResumePlayback : true])
-        UserDefaults.standard.register(defaults: [SettingsConstants.BackgroundPlay : false])
+        UserDefaults.standard.register(defaults: [Settings.Speed : 1.0])
+        UserDefaults.standard.register(defaults: [Settings.ResumePlayback : true])
+        UserDefaults.standard.register(defaults: [Settings.BackgroundPlay : false])
+        UserDefaults.standard.register(defaults: [Settings.LockLandscapePlayback : false])
     }
 }

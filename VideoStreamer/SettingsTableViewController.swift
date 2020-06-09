@@ -13,6 +13,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var speedValueLabel: UILabel!
     @IBOutlet weak var resumePlaybackSwitch: UISwitch!
     @IBOutlet weak var backgroundPlaySwitch: UISwitch!
+    @IBOutlet weak var landscapeLockSwitch: UISwitch!
     @IBOutlet weak var labelLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var clearDownloadsCell: UITableViewCell!
@@ -31,10 +32,9 @@ class SettingsTableViewController: UITableViewController {
         speedValueLabel.text = "\(SettingsManager.shared.playbackSpeed)"
         resumePlaybackSwitch.isOn = SettingsManager.shared.resumePlayback
         backgroundPlaySwitch.isOn = SettingsManager.shared.backgroundPlay
+        landscapeLockSwitch.isOn = SettingsManager.shared.lockLandscapePlayback
     }
-   
-    // MARK: - Navigation
-
+    
     @IBAction func done(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -45,6 +45,10 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func backgroundPlayChanged(_ sender: UISwitch) {
         SettingsManager.shared.backgroundPlay = sender.isOn
+    }
+    
+    @IBAction func landscapeLockChanged(_ sender: UISwitch) {
+        SettingsManager.shared.lockLandscapePlayback = sender.isOn
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

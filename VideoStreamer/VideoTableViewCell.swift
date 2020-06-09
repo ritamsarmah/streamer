@@ -332,12 +332,20 @@ class VideoTableViewCell: UITableViewCell {
                 self.thumbnail.image = video.thumbnailImage
                 self.imageLoadingIndicator.stopAnimating()
                 let thumbnailURL = URL(string: "https://img.youtube.com/vi/\(ytVideo.identifier)/maxresdefault.jpg")
+                let smallThumbnailURL = URL(string: "https://img.youtube.com/vi/\(ytVideo.identifier)/hqdefault.jpg")
                 self.imageLoadingIndicator.stopAnimating()
-                self.thumbnail.sd_setImage(with: thumbnailURL, placeholderImage: video.genericThumbnailImage, completed: { (image, error, cacheType, url) in
+                self.thumbnail.sd_setImage(with: thumbnailURL, placeholderImage: video.genericThumbnailImage, completed: { (image, _, _, _) in
                     DispatchQueue.main.async {
                         if let image = image {
                             let imageData = UIImageJPEGRepresentation(image, 1.0)
                             let _ = FileManager.default.createFile(atPath: video.thumbnailPath.path, contents: imageData, attributes: nil)
+                        } else {
+                            self.thumbnail.sd_setImage(with: smallThumbnailURL, completed: { (smallImage, _, _, _) in
+                                if let smallImage = smallImage {
+                                    let imageData = UIImageJPEGRepresentation(smallImage, 1.0)
+                                    let _ = FileManager.default.createFile(atPath: video.thumbnailPath.path, contents: imageData, attributes: nil)
+                                }
+                            })
                         }
                     }
                 })
